@@ -12,14 +12,78 @@
     <body> 
 
         <div class="header">
-            <h1>Example Student's Assignment 1!</h1>
-            <p>
-            <img src="red-panda.jpg" width=400></a>
-            </p>
-            <p>
-            Here is all the documentation for assignment 1!
-            </p>
+            <h1>Garrett's Assignment 1 - Blink!</h1>
+                <p>
+                    <h2>Schematic</h2>
+                        <p>The schematic shows the general circuit of pin>resistor>LED>GND. I calculated red and green LED's to need a minimum resistance of 160 ohms, blue LED's needed 85 ohms
+                        in order to meet the minimum appropriate resistance needed.</p>
+                            <img src="assets/a1_schematic.jpg" width=400>
+                    <h2>Circuit</h2>
+                        <p>My circuit uses a red, green, and blue LED with timers of 200 milliseconds. The circuit outputs power from pins 4-6 and circulates through GND.</p>
+                            <img src="assets/a1_circuit.JPG" width=400>
+                    <h2>Firmware</h2>
+                         <p>The general logic of this code initializes a timer to each specific pin and LED to blink on and off.
+                        </p>
+                        <pre>
+                    /*
+  Garrett Mar
+  HCDE 439
+  A1 - Blink 
+  
+  For Loop Iteration
+
+  Demonstrates the use of a for() loop.
+  Lights multiple LEDs in sequence, then in reverse.
+
+  The circuit:
+  - LEDs from pins 2 through 7 to ground
+
+  created 2006
+  by David A. Mellis
+  modified 30 Aug 2011
+  by Tom Igoe
+
+  This example code is in the public domain.
+
+  http://www.arduino.cc/en/Tutorial/ForLoop
+*/
+// This line initializes a timer for LED's
+int timer = 200;           // The higher the number, the slower the timing.
+
+// This line is a variable to select each pin for output
+void setup() {
+  // use a for loop to initialize each pin as an output:
+  for (int thisPin = 2; thisPin < 8; thisPin++) {
+    pinMode(thisPin, OUTPUT);
+  }
+}
+
+// This line creates a variable for-loop, looping through 2-8 pins
+void loop() {
+  // loop from the lowest pin to the highest:
+  for (int thisPin = 2; thisPin < 8; thisPin++) {
+    // turn the pin on:
+    digitalWrite(thisPin, HIGH);
+    delay(timer);
+    // turn the pin off:
+    digitalWrite(thisPin, LOW);
+  }
+
+  // loop from the highest pin to the lowest:
+  for (int thisPin = 7; thisPin >= 2; thisPin--) {
+    // turn the pin on:
+    digitalWrite(thisPin, HIGH);
+    delay(timer);
+    // turn the pin off:
+    digitalWrite(thisPin, LOW);
+  }
+}
+                        </pre>
+                    <h2>Operating Circuit</h2>
+                        <p>Here is an animated GIF of my circuit which showcases everything put together!
+                        </p>
+                            <img src="assets/a1_blink.gif" width=400 id="margin-bot">
+                    </p>
         </div>
-        
     </body>
 </html>
