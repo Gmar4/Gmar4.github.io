@@ -15,13 +15,16 @@
             <h1>Garrett's Assignment 2 - Lights that Fade!</h1>
             <p>
                     <h2>Schematic</h2>
-                        <p>Fill in schematic descrip</p>
+                        <p>My schematic includes main parts of a red LED, RGB LED, and button. Calculations of resistor usage can be viewed below, in "Calculations". I used 220 ohm resistors for red/green LED connections, which I calculated the minimum resistance needing to be 160 ohms. I used a 100 ohm resistor for the blue part of the RBG LED, which I calculated a minimum resistance needing to be 85 ohms. Finally, I used a 10k ohm resistor for the button, which I calculated a minimum resistance needing to be 25 ohms. The 10k ohm ensured nothing short circuited, but was potentially overkill and could have worked with an 100 ohm resistor.</p>
                             <img src="assets/a2_schematic.JPG" width=400>
+                    <h3>Calculations</h3>
+                        <p>In order to prevent the circuit from shorting and breaking pieces, I calculated resistance values. Using Ohm's law to calculate the resistance values, I calculated the required minimum resistance of the red LED, green LED, blue LED, and the small button. I assumed minimum current usage of LED's to be 0.02mA and button 2.00mA. Specific calculations are below: </p>
+                            <img src="assets/a2_resistance.JPG" width=400>
                     <h2>Circuit</h2>
                         <p>The circuit repeats a fading red LED. When the button is pushed, the red LED will turn off and the RGB LED will turn on with red, green, and blue color values.</p>
                             <img src="assets/a1_circuit.JPG" width=400>
                     <h2>Firmware</h2>
-                         <p>The general logic of this code initializes a timer to each specific pin and LED to blink on and off.
+                         <p>The general logic of this code initializes pin and button numbers to a if/else and for loop. Then, uses digitalRead, digitalWrite, and analogWrite to manipulate LED's. 
                         </p>
                         <pre>
   /*
