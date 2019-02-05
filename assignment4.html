@@ -1,0 +1,83 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+        <title>Garrett's HCDE 439 Physical Computing Page!</title> 
+
+        <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
+
+    </head> 
+    <body> 
+
+        <div class="header">
+            <h1>Garrett's Assignment 4 - Voltages!</h1>
+            
+            <p>
+                     <h2>Circuit</h2>
+                        <p></p>
+                      <img src="circuit_HW4.JPG" width=400>
+                    <h2>Schematic</h2>
+                        <p></p>
+                            <img src="schematic_HW4.jpg" width=400>
+                    <h3>Calculations</h3>
+                        <p>From 5.0V / .02a = 250 ohms, (assuming 20mA flowing) I used the 10k ohm resistor for the photoresistor. For the transitor, I chose the 10K resistor, because the transitor can handle up to 0.6A. Therefore, 10K resistor results in 0.0005 amp current. </p>
+
+ 
+                    <h2>Firmware</h2>
+                         <p>
+                        </p>
+                        <pre>
+                        
+// Analog input mapped to n A0
+const int analogInPin = A0;
+// Transistor mapped to pin 9
+const int analogOutPin = 10;
+// The analog reading from the ldr sensor
+int sensorValue;
+// The output value from mapping function and sensorValue
+int outputValue;
+
+void setup() {
+// Initialize serial communications at 9600 bps:
+Serial.begin(9600);
+}
+
+void loop() {
+  // Read the value from the analogInPin, A0
+  sensorValue = analogRead(analogInPin);
+  // Map output 0-1023 to 0-255 to the range analogWrite uses
+  outputValue = map(sensorValue, 0, 1023, 0, 255);
+  // if sensor value is less than 250, turn LED's on
+if (sensorValue < 80) {
+  // Set value of LED's to brightness equal to output value
+  analogWrite(analogOutPin, outputValue);
+  // Print LED ON statement to serial monitor
+  Serial.println("LED's are ON!");
+  // Print outputValue to serial monitor
+  Serial.println(outputValue);
+}
+// if sensor value is not less than 250, turn LED's off
+else {
+  // Set value of LED's to zero, to turn off
+  analogWrite(analogOutPin, 0);
+  // Print LED OFF statement to serial monitor
+  Serial.println("LED's are OFF!");
+  // Print outputValue to serial monitor
+  Serial.println(outputValue);
+}
+  // Wait 100 milliseconds before the next loop for analog
+  // converter to settle after the last reading:
+  delay(100);
+}
+                 </pre>
+    
+        <h2>Operating Circuit</h2>
+            <p>Here is an animated GIF of everything in action! It turns on the strip LED when the photoresistor is covered and turns the LED off when not covered.
+            </p>
+                <img src="HW4.gif" width=400 height=400 id="margin-bot">
+        </p>
+        </div>    
+    </body>
+</html>
