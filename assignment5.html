@@ -1,0 +1,98 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+        <title>Garrett's HCDE 439 Physical Computing Page!</title> 
+
+        <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
+
+    </head> 
+    <body> 
+
+        <div class="header">
+            <h1>Garrett's Assignment 5 - Motors!</h1>
+            
+            <p>
+                     <h2>Schematic</h2>
+                        <p>Key parts of the schematic include: Arduino, Servo motor, Joystick module, and breadboard.</p>
+                        <img src="assets/a5_circuit.JPG" width=400>
+                     <h2>Circuit</h2>
+                        <p>The circuit's servo moves when the joystick is moved in the x position left or right.</p>
+                      <img>
+
+ 
+                    <h2>Serial Monitor Readings</h2>
+                         <p>
+                            When moving the joystick left, the x value will go from 513 to 0, as seen in the serial monitor reading.
+                         </p>
+                         <img src="assets/a5_serial_monitor.png" width=400>
+                    <pre>
+                    /*
+ * Garrett Mar
+ * HCDE 439
+ * A5: Motors
+ * Winter 2019
+ */
+
+//add servo library
+#include &lt;Servo.h&gt;
+
+//define servo motor variable
+Servo servo1;
+
+//initialize joystick x to pin A0
+int joyX = A0;
+//initialize joystick y to pin A1
+int joyY = A1;
+
+//initialize variable to map servo values
+int servoVal;
+//initialize variable to read x value of joystick
+int servoValx;
+//initialize variable to read y value of joystick
+int servoValy;
+
+  
+void setup() 
+{
+  //attach servo to pin PWM 9 
+  servo1.attach(9);
+  //initialize serial monitor at 9600 bps
+  Serial.begin(9600);
+}
+  
+void loop()
+{
+  //read the x value of joystick between 0-1023
+  servoValx = analogRead(joyX);
+  //read the y value of joystick between 0-1023
+  servoValy = analogRead(joyY);
+  
+  //map servo value between 180-0(flipped so joystick and blade aren't inverse)
+  servoVal = map(servoValx, 0, 1023, 180, 0);
+  //set the servo position from joystick value
+  servo1.write(servoVal);
+
+  //print Joystick's X value in the serial monitor
+  Serial.print("Joystick X value:");
+  Serial.println(servoValx);
+  
+  //print Joystick's Y value in the serial monitor
+  Serial.print("Joystick Y value:");
+  Serial.println(servoValy);
+
+  //delay serial monitor readings by 25 milliseconds
+  delay(25);  
+}
+                    </pre>
+    
+        <h2>Operating Circuit</h2>
+            <p>Here is an animated GIF of everything in action!
+            </p>
+                <img src="assets/a5_working.gif" width=400 height=250 id="margin-bot">
+            </p>
+        </div>    
+    </body>
+</html>
