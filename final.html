@@ -14,15 +14,18 @@
         <div class="header">
             <h1>Garrett's Final Project - Stall Usage Indicator!</h1>
             <p>
-                    <h2>Stall Usage Indicator</h2>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/DC3YJuJLhJ0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <h2>Project Motivation</h2>
+                        <p>I wanted to create a stall usage indicator after my experience with a lack of bathrooms inside an office space. Here's the scenario. You walk into a public restroom but all the stalls are already in usage. Now you have to go to another bathroom to use a stall. I wanted to create a prototype that would better indicate if a stall was in usage and be able to access this indicator on a website.
+                        </p>
+                            <img src="assets/final_initial_sketch.JPG" width=600>
+            
                     <h2>Schematic</h2>
-                        <p>I used a photoresistor to convert to serial monitor values and a green LED to translate serial monitor values to brightness as a visual affordance. Key parts of the schematic include: green LED, red LED, two 330 ohm resistors, photoresistor, and 10k ohm resistor connected to input Analog 0.</p>
-                            <img src="assets/final_schematic.png" width=600>
+                        <p>I used a photoresistor to convert to serial monitor values and check if a door was open, based on the amount of light the photoresistor received. Also, I used a green LED and red LED to translate serial monitor values to turning on an LED as a visual affordance. Key parts of the schematic include: green LED, red LED, two 330 ohm resistors, photoresistor, and 10k ohm resistor connected to input Analog 0.</p>
+                            <img src="assets/final_schematic2.png" width=600>
                     <h2>Circuit</h2>
-                            <img src="assets/final_circuit.png" width=600>
+                            <img src="assets/final_circuit2.png" width=600>
                     <h2>Firmware</h2>
-                         <p>The sketch.js file populates available or in use text to a webpage using p5. When a door is closed, the webpage will update with "in use" and the man on the toilet will appear. When a door is open, the text will update with "available" and the happy toilet will appear. Also, for QA and number tracking, top-left shows the serial translated value.
+                         <p>The sketch.js file populates available or in use text to a webpage using p5. When a door is closed, the webpage will update with "in use" and the man on the toilet will appear. When a door is open, the text will update with "available" and the happy toilet will appear. Also, to constantly check serial monitor converted value, top-left shows the serial translated value.
                         </p>
                     <h2>P5.js Code</h2>
                         <pre>
@@ -144,8 +147,14 @@ void loop() {
       delay(100);
 }
                         </pre>
+                        <h2>Prototyping</h2>
+                        <p>First, I started prototyping with a mini wooden door to test the opening and closing functionality. When you think about regular doors or restroom stalls, the frame of the door is able to block some light from outside of a room. With this logic, I tried decided the light dependent resistor would work well. Yes, there is the concern like what if the door is closed and no one is in it. However, most stall doors will automatically swivel open slighty, allow light to read to the sensor. After testing with a mini-door, I moved the indicator to the regular door and adjusted code based on the serial monitor readings. After that, I moved onto creating the web interface and ensuring the website properly aligned with the green/red LED's indicators on the arduino. Below is the working usage indicator.
+                        </p>
+                        <img src="assets/final_mini_door.png" width=600 height=400 id="margin-bot">
+                        <h2>Video Usage Demonstration</h2>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/DC3YJuJLhJ0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <h2>Operating Circuit</h2>
-                        <p>Here is an animated GIF of everything in action! The webpage will indicate if a stall is in use or available. This webpage is connected to the hardware, which is the indicator for if a door is opened or closed. Note: I used a door in my room, as it was awkward and not sure if legal to film in a public restroom. However, the restroom stall uses very similar environment, the light might be brighter in the restroom but the code would be adjusted based on the light in the restroom. Another constraint is that the prototype and a laptop would need to be planted in the restroom somewhere. For future iterations, the hardware/breadboard could be planted on the stall door and the laptop could be replaced with a bluetooth communication device. For the purposes of this class, the prototype below does the job well, with a regular door.
+                        <p>Here is an animated GIF of everything in action! The webpage will indicate if a stall is in use or available. This webpage is connected to the hardware, which is the indicator for if a door is opened or closed. I used a door in my room, as it was awkward to film in a public restroom. However, the restroom stall uses a very similar environment, the light might be brighter in the restroom but the code would be adjusted based on the light in the restroom. Another constraint is that the prototype and a laptop would need to be planted in the restroom somewhere. For future iterations, the hardware/breadboard could be planted on the stall door and the laptop could be replaced with a bluetooth communication device. For the purposes of this class, the prototype below does the job well, with a regular door.
                         </p>
                             <img src="assets/final_all.gif" width=600 height=400 id="margin-bot">
                             <img src="assets/final_web_demo.gif" width=600 height=400 id="margin-bot">
